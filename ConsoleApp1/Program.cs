@@ -8,25 +8,54 @@ namespace ConsoleApp1
 {
    
 
-    class TaskItem
+    class TodoItem
     {
-        public string Title { get; set; }
+        private int id;
+        private string title;
+        private string description;
+        private DateTime dueDate;
+        private bool isCompleted;
+
+
+        public int Id { get; set; }
+        public string Title { 
+        
+            get
+            {
+                return title;   
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(title))
+                    throw new ArgumentNullException("Заглавието е задължително");
+            }
+
+        }
+
         public string Description { get; set; }
         public DateTime DueDate { get; set; }
         public bool IsCompleted { get; set; }
 
-        public TaskItem(string title, string description, DateTime dueDate)
+        public TodoItem(int id, string title, string description, DateTime dueDate)
         {
+            if(id<=0) 
+                throw new ArgumentOutOfRangeException("ID трябва да е положително число");
+
+            if(string.IsNullOrEmpty(title))
+                throw new ArgumentNullException("Заглавието е задължително");
+            Id = id;
             Title = title;
             Description = description;
             DueDate = dueDate;
             IsCompleted = false;
         }
+       
     }
 
     class Program
     {
-        static List<TaskItem> tasks = new List<TaskItem>();
+        static List<TodoItem> tasks = new List<TodoItem>();
+        private static int nextID = 1;
 
         static void Main()
         {
@@ -48,7 +77,7 @@ namespace ConsoleApp1
                 switch (choice)
                 {
                     case "1":
-                        AddTask();
+                        AddTask();Console.ReadLine
                         break;
 
                     case "2":
@@ -86,7 +115,25 @@ namespace ConsoleApp1
             Console.Write("Описание: ");
             string description = Console.ReadLine();
 
-            DateTime dueDate;
+            Console.Write("Краем срок:");
+
+            DateTime dueDate = DateTime.Parse(Console.ReadLine());
+            try
+            {
+                TodoItem todoItem = new TodoItem(nextID, title, description, dueDate);
+                tasks.Add(todoItem);
+                Console.WriteLine("Задачата е добавена.");
+                todoItem.Title = "";
+                todoItem.Id = -40;
+            }
+            catch(ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch(ArgumentNullException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             while (true)
             {
@@ -100,7 +147,7 @@ namespace ConsoleApp1
                 Console.WriteLine("Невалидна дата! Опитай отново.");
             }
 
-            TaskItem newTask = new TaskItem(title, description, dueDate);
+            TodoItem newTask = new TodoItem(title, description, dueDate);
 
             tasks.Add(newTask);
 
@@ -122,7 +169,7 @@ namespace ConsoleApp1
 
             for (int i = 0; i < tasks.Count; i++)
             {
-                TaskItem task = tasks[i];
+                TodoItem task = tasks[i];
 
                 string status = task.IsCompleted
                     ? "Изпълнена"
@@ -232,6 +279,7 @@ namespace ConsoleApp1
             Console.WriteLine("Натисни Enter за продължаване...");
             Console.ReadLine();
         }
+       
     }
 
 }
