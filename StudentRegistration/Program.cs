@@ -4,6 +4,26 @@
     {
         static void Main(string[] args)
         {
+
+            Console.WriteLine("Начало на програмата");
+            try
+            {
+                Console.Write("Въведете число: ");
+                int number = int.Parse(Console.ReadLine());
+
+                Console.WriteLine($"Въведохте: {number}");
+            }
+            catch
+            {
+                Console.WriteLine("Грешка! Трябва да въведете число.");
+            }
+            finally
+            {
+                Console.WriteLine("Край на програмата");
+            }
+                
+
+
             Console.Write("Въведете възраст: ");
             if (int.TryParse(Console.ReadLine(), out int age))
             {
