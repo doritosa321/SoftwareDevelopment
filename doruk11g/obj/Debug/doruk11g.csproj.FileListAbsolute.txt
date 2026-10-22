@@ -1,0 +1,7 @@
+C:\Users\User\source\repos\doruk11g\bin\Debug\doruk11g.exe.config
+C:\Users\User\source\repos\doruk11g\bin\Debug\doruk11g.exe
+C:\Users\User\source\repos\doruk11g\bin\Debug\doruk11g.pdb
+C:\Users\User\source\repos\doruk11g\obj\Debug\doruk11g.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\doruk11g\obj\Debug\doruk11g.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\doruk11g\obj\Debug\doruk11g.exe
+C:\Users\User\source\repos\doruk11g\obj\Debug\doruk11g.pdb
